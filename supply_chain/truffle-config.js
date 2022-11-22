@@ -56,6 +56,10 @@ module.exports = {
             websockets: true,
         },
 
+        local: {
+            port: 7545,
+        },
+
         // An additional network, but with some advanced options…
         // advanced: {
         //   port: 8777,             // Custom port
