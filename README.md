@@ -35,13 +35,15 @@ truffle migrate --network sepolia  # truffle is flaky, so if encounter error jus
 
 # Launch frontend
 npm run dev  # better use live server as it's more convenient and less flaky than npm
+
+# Using frontend and metamask wallet assign Farmer and other roles to your other accounts and take role-specific actions from corresponding accounts
 ```
 
-## Connect to existing contract
+### Connect to existing contract
 
 * Contract address on Sepolia testnet: `0x7fBD77efd292eEB2919A5bBB0f5E0106802cB227` 
 
-## Libraries
+### Libraries
 (see package.json)
 1. `lite-server` for local frontend development in vscode
 2. `truffle/hdwallet-provider` for using private keys
