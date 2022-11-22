@@ -37,6 +37,10 @@ truffle migrate --network sepolia  # truffle is flaky, so if encounter error jus
 npm run dev  # better use live server as it's more convenient and less flaky than npm
 ```
 
+## Connect to existing contract
+
+* Contract address on Sepolia testnet: `0x7fBD77efd292eEB2919A5bBB0f5E0106802cB227` 
+
 ## Libraries
 (see package.json)
 1. `lite-server` for local frontend development in vscode
