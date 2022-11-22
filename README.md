@@ -1,18 +1,8 @@
-# Supply chain & data auditing
+# Supply chain Dapp
 
 Supply Chain Tracking on Ethereum
 
 This repository containts an Ethereum DApp that demonstrates a Supply Chain flow between a Seller and Buyer. The user story is similar to any commonly used supply chain process. A Seller can add items to the inventory system stored in the blockchain. A Buyer can purchase such items from the inventory system. Additionally a Seller can mark an item as Shipped, and similarly a Buyer can mark an item as Received.
-
-The DApp User Interface when running should look like...
-
-![truffle test](images/ftc_product_overview.png)
-
-![truffle test](images/ftc_farm_details.png)
-
-![truffle test](images/ftc_product_details.png)
-
-![truffle test](images/ftc_transaction_history.png)
 
 ## Getting Started
 
@@ -22,68 +12,44 @@ These instructions will get you a copy of the project up and running on your loc
 
 Please make sure you've already installed ganache-cli, Truffle and enabled MetaMask extension in your browser.
 
-```
-Give examples (to be clarified)
-```
-
 ### Installing
 
 ```
 cd supply_chain
 npm install
+
+# Run tests
+truffle develop 
+> test  # in truffle console, exit to proceed (ctrl+c) 
+
+# Deploying DApp to the network
+# Compile truffle contracts
+truffle compile 
+
+# Option 1. Deploy DApp to the local ganache network
+truffle migrate --network local
+
+# Option 2. Deploy DApp to Sepolia testnet
+touch .env  # create .env file and put your sepolia private key under PRIVATE_KEY_SEPOLIA (see truffle-config for use case)
+truffle migrate --network sepolia  # truffle is flaky, so if encounter error just try deploying again
+
+# Launch frontend
+npm run dev  # better use live server as it's more convenient and less flaky than npm
 ```
 
-Launch Ganache:
+## Libraries
+(see package.json)
+1. `lite-server` for local frontend development in vscode
+2. `truffle/hdwallet-provider` for using private keys
+3. `dotenv` for storing private keys
 
-```
-ganache-cli -m "spirit supply whale amount human item harsh scare congress discover talent hamster"
-```
+## Diagrams 
 
-Your terminal should look something like this:
+![classes](images/application_diagram.png)
+![sequence](images/sequence_uml.png)
 
-![truffle test](images/ganache-cli.png)
+The DApp User Interface when running looks like...
 
-In a separate terminal window, Compile smart contracts:
+![truffle test](images/frontend_1.png)
 
-```
-truffle compile
-```
-
-Your terminal should look something like this:
-
-![truffle test](images/truffle_compile.png)
-
-This will create the smart contract artifacts in folder `build\contracts`.
-
-Migrate smart contracts to the locally running blockchain, ganache-cli:
-
-```
-truffle migrate
-```
-
-Your terminal should look something like this:
-
-![truffle test](images/truffle_migrate.png)
-
-Test smart contracts:
-
-```
-truffle test
-```
-
-All 10 tests should pass.
-
-![truffle test](images/truffle_test.png)
-
-In a separate terminal window, launch the DApp:
-
-```
-npm run dev
-```
-
-## Built With
-
--   [Ethereum](https://www.ethereum.org/) - Ethereum is a decentralized platform that runs smart contracts
--   [IPFS](https://ipfs.io/) - IPFS is the Distributed Web | A peer-to-peer hypermedia protocol
-    to make the web faster, safer, and more open.
--   [Truffle Framework](http://truffleframework.com/) - Truffle is the most popular development framework for Ethereum with a mission to make your life a whole lot easier.
+![truffle test](images/frontend_2.png)
