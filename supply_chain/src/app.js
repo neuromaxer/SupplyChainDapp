@@ -267,6 +267,7 @@ const App = {
 
     fetchPastEvents: async function () {
         console.log("Trying to fetch past events...");
+        $("#ftc-events").empty();
         await App.supplyChainContract
             .getPastEvents("allEvents", { fromBlock: 1 })
             .then(function (events) {
