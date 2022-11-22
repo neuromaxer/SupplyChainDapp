@@ -20,30 +20,45 @@
             </p>
         </div>
 
+        <br />
+        <h2>Connect to MetaMask to Start Dapp</h2>
+        <button id="connectMetaMask" onclick="App.initWeb3()">
+            Connect MM
+        </button>
+        <br /><br />
+
+        <h2>Select Role to Grant to an Address</h2>
+        <h3>(only Contract Owner can do it)</h3>
+        <div class="form-group">
+            <label for="rolesDropdown">Choose a role: </label>
+            <select name="rolesDropdown" id="rolesDropdown">
+                <option value="Farmer">Farmer</option>
+                <option value="Distributor">Distributor</option>
+                <option value="Retailer">Retailer</option>
+                <option value="Consumer">Consumer</option>
+                <option value="Contract Owner">Contract Owner</option>
+            </select>
+            <br /><br />
+            Address to Assign Role To:
+            <input
+                class="input-field"
+                type="text"
+                id="addressToAssignRole"
+                name="addressToAssignRole"
+                value="0x963865f57804b38459dd4b2da2f760211a200438"
+            /><br />
+            <button id="assignRole" onclick="App.assignRole()">
+                Assign Role
+            </button>
+            <br />
+        </div>
+
         <div id="ftc-harvest">
-            <h2>Product Overview</h2>
+            <h2>Item Overview</h2>
             <div class="form-group">
-                SKU
-                <br />
-                <input
-                    class="input-field"
-                    type="number"
-                    id="sku"
-                    name="sku"
-                    value="1"
-                /><br />
-                UPC
+                UPC (All actions below will apply to the chosen UPC)
                 <br />
                 <input type="number" id="upc" name="upc" value="1" /><br />
-                Current Owner ID
-                <br />
-                <input
-                    type="text"
-                    id="ownerID"
-                    name="ownerID"
-                    value="0x963865f57804b38459dd4b2da2f760211a200438"
-                    size="50"
-                /><br />
                 <div class="button-div">
                     <button
                         class="btn-fetchOne"
@@ -64,17 +79,8 @@
                 </div>
             </div>
             <div class="form-break"></div>
-            <h2>Farm Details</h2>
+            <h2>Farmer Dashboard</h2>
             <div class="form-group">
-                Farmer ID
-                <br />
-                <input
-                    type="text"
-                    id="originFarmerID"
-                    name="originFarmerID"
-                    value="0x99c289eb2aacec289631a5ddf62cf27a63d4494f"
-                    size="50"
-                /><br />
                 Farm Name
                 <br />
                 <input
@@ -107,6 +113,23 @@
                     name="originFarmLongitude"
                     value="144.341490"
                 /><br />
+                Product Notes
+                <br />
+                <input
+                    type="text"
+                    id="productNotes"
+                    name="productNotes"
+                    value="Best beans for Espresso"
+                    size="60"
+                /><br />
+                Sell Price (Farmer)
+                <br />
+                <input
+                    type="number"
+                    id="sellPrice"
+                    name="sellPrice"
+                    value="1"
+                />ETH<br />
                 <br />
                 <button
                     class="btn-harvest"
@@ -137,53 +160,16 @@
                 </button>
             </div>
             <div class="form-break"></div>
-            <h2>Product Details</h2>
+            <h2>Distributor, Retailer, Consumer Dashboard</h2>
             <div class="form-group">
-                Product Notes
-                <br />
-                <input
-                    type="text"
-                    id="productNotes"
-                    name="productNotes"
-                    value="Best beans for Espresso"
-                    size="60"
-                /><br />
-                Product Price
+                Buy Price (distributor)
                 <br />
                 <input
                     type="number"
-                    id="productPrice"
-                    name="productPrice"
+                    id="buyPrice"
+                    name="buyPrice"
                     value="1"
                 />ETH<br />
-                Distributor ID
-                <br />
-                <input
-                    type="text"
-                    id="distributorID"
-                    name="distributorID"
-                    value="0xf1b1bcd24dad92303dd9fe78be639f7bcf9c238d"
-                    size="50"
-                />
-                <br />
-                Retailer ID
-                <br />
-                <input
-                    type="text"
-                    id="retailerID"
-                    name="retailerID"
-                    value="0x0fb2bfefd526966c87efa19f6693d50971763fc2"
-                    size="50"
-                /><br />
-                Consumer ID
-                <br />
-                <input
-                    type="text"
-                    id="consumerID"
-                    name="consumerID"
-                    value="0x5d777e9127b28fb119e81a6304278a0a21bef1c4"
-                    size="50"
-                /><br />
                 <br />
                 <button class="btn-buy" id="button" type="button" data-id="5">
                     Buy
@@ -212,7 +198,20 @@
             <hr />
         </div>
 
-        <h2>Transaction History<span id="ftc-history"></span></h2>
+        <h2>Product Data:<span id="buffer-type"></span></h2>
+        <div>
+            <ul id="item-data">
+                <!-- Product details will be fetched here from app.js -->
+            </ul>
+            <br />
+            <hr />
+        </div>
+
+        <h2>Transaction History:<span id="ftc-history"></span></h2>
+        <h3>
+            Only works for actual ETH network (e.g. Sepolia), not for local
+            truffle env
+        </h3>
         <div>
             <ul id="ftc-events">
                 <!-- Events will appear here from app.js -->
@@ -223,10 +222,6 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-        <script
-            type="text/javascript"
-            src="./dist/truffle-contract.min.js"
-        ></script>
-        <script src="js/app.js"></script>
+        <script src="src/app.js" type="module"></script>
     </body>
 </html>
